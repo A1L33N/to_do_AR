@@ -9,3 +9,5 @@ DB = PG.connect({:dbname => "to_do"})
 get('/') do
   erb(:index)
 end
+
+# for final part of sorting by timestamp, we figured out that we needed to use SELECT FROM to get our thingy back
