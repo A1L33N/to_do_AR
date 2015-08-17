@@ -1,6 +1,7 @@
 require('rspec')
 require('pg')
 require('list')
+require("spec_helper")
 
 DB = PG.connect({:dbname => 'to_do_test'})
 
@@ -16,7 +17,7 @@ describe(List) do
       expect(List.all()).to(eq([]))
     end
   end
-  
+
   describe("#name") do
     it("tells you its name") do
       list = List.new({:name => "Epicodus stuff", :id => nil})

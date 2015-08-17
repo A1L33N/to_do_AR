@@ -1,6 +1,7 @@
 require("rspec")
 require("pg")
 require("task")
+require("spec_helper")
 
 DB = PG.connect({:dbname => 'to_do_test'})
 
@@ -13,8 +14,8 @@ end
 describe(Task) do
   describe("#==") do
     it("is the same task if it has the same description") do
-      task1 = Task.new({:description => "learn SQL"})
-      task2 = Task.new({:description => "learn SQL"})
+      task1 = Task.new({:description => "learn SQL", :list_id => "list_id"})
+      task2 = Task.new({:description => "learn SQL", :list_id => "list_id"})
       expect(task1).to(eq(task2))
     end
   end
