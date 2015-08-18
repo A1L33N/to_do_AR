@@ -1,0 +1,26 @@
+<h1>Your Current Tasks</h1>
+
+<% if @tasks.any?() %>
+  <h3>Here are your tasks:</h3>
+
+  <ul>
+    <% @tasks.each() do |task| %>
+      <li><%= task.id()%>"><%= task.description() %></li>
+    <% end %>
+  </ul>
+  <p><i>Create a new task:</i></p>
+
+  <form action="/tasks" method="post">
+    <label for="description">Task Description</label>
+    <input id="description" name="description" type="text">
+
+    <button type="submit" class="btn-success">Add task</button>
+  </form>
+
+  </div>
+  <a href="/"><button class="btn btn-success">Return Home</a>
+<% else %>
+
+    <p>There are no tasks yet!</p>
+    <a href="/"><button class="btn btn-success">Return Home</a>
+<% end %>

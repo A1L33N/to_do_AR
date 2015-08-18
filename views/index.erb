@@ -12,16 +12,10 @@
 
     <h1 style="text-align: center; margin-bottom: 50px;">Lists <i class="fa fa-tasks"></i></h1>
     <div class="container">
-<p>Here are all your lists:</p>
 
-<ul>
-  <% @lists.each() do |list| %>
-  <li><%= list.name() %></li>
-  <% end %>
 
-</ul>
 
-<p><i>Create a new task:</i></p>
+<p><i>Create a new list:</i></p>
 
 <form action="/lists" method="post">
   <label for="name">List Name</label>
@@ -33,8 +27,18 @@
 </div>
 
 <div class="container">
-  <a href="/lists" class"btn btn-success">View All Lists</a>
-  <!-- <a href="/lists/new">Add New List</a> -->
+<% if @lists.any?() %>
+  <h3>Here are your lists:</h3>
+
+  <ul>
+    <% @lists.each() do |list| %>
+      <li><a href="/lists/<%= list.id()%>"><%= list.name() %></a> </li>
+    <% end %>
+  </ul>
+
+<% end %>
+</div>
+
 </div>
 </body>
 </html>
