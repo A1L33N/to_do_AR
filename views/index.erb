@@ -1,3 +1,40 @@
-<h1>Welcome to Your Tasks</h1>
-<!-- <a href="/dealerships">See Dealership List</a>
-<a href="/dealerships/new">Add New Dealership</a> -->
+<!DOCTYPE html>
+<html>
+  <head>
+
+<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Play">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+</head>
+    <body style="font-family: 'Play', serif;font-size: 35px;">
+
+
+    <h1 style="text-align: center; margin-bottom: 50px;">Lists <i class="fa fa-tasks"></i></h1>
+    <div class="container">
+<p>Here are all your lists:</p>
+
+<ul>
+  <% @lists.each() do |list| %>
+  <li><%= list.name() %></li>
+  <% end %>
+
+</ul>
+
+<p><i>Create a new task:</i></p>
+
+<form action="/lists" method="post">
+  <label for="name">List Name</label>
+  <input id="name" name="name" type="text">
+
+  <button type="submit" class="btn-success">Add list</button>
+</form>
+
+</div>
+
+<div class="container">
+  <a href="/lists" class"btn btn-success">View All Lists</a>
+  <!-- <a href="/lists/new">Add New List</a> -->
+</div>
+</body>
+</html>

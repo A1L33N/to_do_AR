@@ -6,6 +6,11 @@ class Task
     @list_id = attributes.fetch(:list_id)
   end
 
+
+  define_method(:description) do
+      @description
+    end
+
   define_singleton_method(:all) do
     returned_tasks = DB.exec("SELECT * FROM tasks;")
     tasks = []
