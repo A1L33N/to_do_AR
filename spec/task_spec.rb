@@ -1,28 +1,31 @@
+require("spec_helper")
 require("rspec")
 require("pg")
 require("task")
-require("spec_helper")
+require("list")
 
-DB = PG.connect({:dbname => 'to_do_test'})
-
-RSpec.configure do |config|
-  config.after(:each) do
-    DB.exec("DELETE FROM tasks *;")
-  end
-end
 
 describe(Task) do
-  describe("#==") do
-    it("is the same task if it has the same description") do
-      task1 = Task.new({:description => "learn SQL", :list_id => "list_id"})
-      task2 = Task.new({:description => "learn SQL", :list_id => "list_id"})
-      expect(task1).to(eq(task2))
+
+  describe('#list') do
+    it("tells which list it belongs to") do
+      test_list = List.create({:name => "list"})
+      test_task = Task.create({:description => "task", :list_id => test_list.id})
+      expect(test_task.list()).to(eq(test_list))
     end
   end
 end
 
-describe(".all") do
-  it("is empty at first") do
-    expect(Task.all()).to(eq([]))
-  end
-end
+
+
+
+#   describe(".not_done") do
+#     it("returns the not done tasks") do
+#       not_done_task1 = Task.create({:description => "gotta do it", :done => false})
+#       not_done_task2 = Task.create({:description => "gotta do it too", :done => false})
+#       not_done_tasks = [not_done_task1, not_done_task2]
+#       done_task = Task.create({:description => "done task", :done => true})
+#       expect(Task.not_done()).to(eq(not_done_tasks))
+#     end
+#   end
+# end

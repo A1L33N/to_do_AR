@@ -1,16 +1,28 @@
-<h1>Your Current Lists</h1>
+<h2><%=@list.name%> details</h2>
 
-<% if @lists.any?() %>
-  <h3>Here are your lists:</h3>
+<% if @tasks.any?() %>
+  <h3>Here are your tasks:</h3>
 
   <ul>
-    <% @lists.each() do |list| %>
-      <li><a href="/lists/<%= list.id()%>"><%= list.name() %></a> </li>
+    <% @tasks.each() do |task| %>
+    <li><%= task.description %> <a href="/tasks/<%= task.id() %>/edit">Update this task's description</a></li>
     <% end %>
   </ul>
+  <p><i>Create a new task:</i></p>
+
+  <form action="/tasks" method="post">
+    <input id='list_id' name='list_id' type='hidden' value='<%= @list.id() %>'>
+    <label for="description">Task Description</label>
+    <input id="description" name="description" type="text">
+
+    <button type="submit" class="btn-success">Add task</button>
+  </form>
+
+  </div>
   <a href="/"><button class="btn btn-success">Return Home</a>
 <% else %>
 
-    <p>There are no lists yet!</p>
-    <a href="/"><button class="btn btn-success">Return Home</a>
+    <p>There are no tasks yet!</p>
+
+
 <% end %>
